@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import { validateRequest } from "../middleware/common/validate-request";
-import { body } from "express-validator";
+import { body, param } from "express-validator";
 const router = express.Router();
 import { postgres } from "../config/postgresConnection";
 import { BadRequestError } from "../errors";
@@ -63,26 +63,47 @@ router.post(
 );
 
 //get all notes
+router.get("/api/notes", async (req: Request, res: Response) => {
+  try {
+    const { author } = req.query;
+    let notes;
+    if (author) {
+      //filter
+      notes = await postgres.query("SELECT * FROM notes WHERE author = $1 ", [
+        author,
+      ]);
+    } else {
+      notes = await postgres.query("SELECT * FROM notes");
+    }
+    res.status(200).send({
+      notes: notes.rows,
+    });
+    return;
+  } catch (err) {
+    console.error(err.message);
+    throw new BadRequestError("Something went wrong, Please try again");
+  }
+});
+
+//path paramater
 router.get(
-  "/api/notes",
-  [],
+  "/api/notes/:id",
+  [param("id").isNumeric().withMessage("Note Id can only be number")],
   validateRequest,
   async (req: Request, res: Response) => {
     try {
-      const { author } = req.query;
-      let notes;
-      if (author) {
-        //filter
-        notes = await postgres.query("SELECT * FROM notes WHERE author = $1 ", [
-          author,
-        ]);
+      const { id } = req.params;
+      console.log(id);
+      const note = await postgres.query("SELECT * FROM notes WHERE id = $1", [
+        id,
+      ]);
+      if (note.rows.length) {
+        res.send({
+          note: note.rows[0],
+        });
       } else {
-        notes = await postgres.query("SELECT * FROM notes");
+        res.status(404).send();
       }
-      res.status(200).send({
-        notes: notes.rows,
-      });
-      return;
     } catch (err) {
       console.error(err.message);
       throw new BadRequestError("Something went wrong, Please try again");
