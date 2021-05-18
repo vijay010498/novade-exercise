@@ -1,6 +1,6 @@
-import { Pool } from "pg";
+import { Pool as post } from "pg";
 
-const pool = new Pool({
+const pool = new post({
   user: "postgres",
   password: "vijay",
   database: "novade",
