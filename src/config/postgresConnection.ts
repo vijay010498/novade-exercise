@@ -13,6 +13,7 @@ const pool = new post({
   database: "dc5u74b93hrtd8",
   host: "ec2-34-193-113-223.compute-1.amazonaws.com",
   port: 5432,
+  ssl: true,
 });
 
 export { pool as postgres };
