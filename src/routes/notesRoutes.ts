@@ -5,11 +5,6 @@ const router = express.Router();
 import { postgres } from "../config/postgresConnection";
 import { BadRequestError } from "../errors";
 
-router.get("/api/test", async (req: Request, res: Response) => {
-  res.send("TEST SUCCESS");
-  return;
-});
-
 //post notes
 router.post(
   "/api/notes",
