@@ -1,3 +1,7 @@
+/*
+One for the custom error for 400 not found used in app.js use the custom error abstract class
+ */
+
 import { CustomError } from "./custom-error";
 
 export class BadRequestError extends CustomError {

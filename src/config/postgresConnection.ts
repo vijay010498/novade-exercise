@@ -1,3 +1,6 @@
+/*
+This files the postgres configuration settings to connect to a postgres database. Make sure to create a database and the notes table using the queries mentioned in the database.sql file
+ */
 import { Pool as post } from "pg";
 
 /*const pool = new post({
@@ -18,4 +21,4 @@ const pool = new post({
   },
 });
 
-export { pool as postgres };
+export { pool as postgres }; //exporting the connection object to use in the routes endpoints
