@@ -2,7 +2,7 @@
 This file contains all the express endpoints and validation middleware
  */
 
-import express, { Request, Response } from "express"; //express and Request and response to specifying the type format since tbis is typescript
+import express, { Request, Response } from "express"; //express and Request and response to specifying the type format since this is typescript
 import { validateRequest } from "../middleware/common/validate-request"; //custom made validation to check the query, body and params and serialize the errors in common format
 import { body, param } from "express-validator"; //express-validator is a middleware to validate the request query , body, and params before processing the request
 const router = express.Router(); //init
