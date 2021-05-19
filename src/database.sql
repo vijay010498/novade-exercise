@@ -1,7 +1,7 @@
-CREATE DATABASE novade;
+CREATE DATABASE IF NOT EXISTS novade;
 
 --\c into novade
-CREATE TABLE notes (
+CREATE TABLE IF NOT EXISTS notes (
     id SERIAL PRIMARY KEY,
     added VARCHAR(255) NULL,
     author VARCHAR(255) NOT NULL,
