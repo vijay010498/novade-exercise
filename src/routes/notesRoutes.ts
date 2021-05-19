@@ -20,6 +20,7 @@ router.post(
       .trim() //ignoring trailing spaces
       .isLength({
         min: 1,
+        max: 65535,
       })
       .withMessage("Author Must be valid"), //failing the case this message will be sent back along with the status code 422 .
     body("content") //same as for "author" field
@@ -27,6 +28,7 @@ router.post(
       .trim()
       .isLength({
         min: 1,
+        max: 65535,
       })
       .withMessage("Content Must be valid"),
     body("added") //since the added is optional this check will be done only when added it provided in the body.
