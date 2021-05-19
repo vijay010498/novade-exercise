@@ -46,7 +46,7 @@ router.post(
       if (added) {
         //if added provided this block will execute and added string will all be inserted
         await postgres.query(
-          "INSERT INTO notes (added,author,content) VALUES ($1,$2,$3) RETURNING *",
+          "INSERT INTO notes (added,author,content) VALUES ($1,$2,$3)",
           [added, author, content]
         );
       } else if (!added) {
