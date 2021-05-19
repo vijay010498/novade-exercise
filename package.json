@@ -10,9 +10,7 @@
   "scripts": {
     "start": "ts-node-dev src/startServer.ts",
     "dev": "ts-node-dev src/startServer.ts",
-    "auto-insert": "ts-node src/dBTableAutoInsert.ts",
-    "start-auto-insert": "concurrently \"npm run start\" \"npm run auto-insert\"",
-    "dev-auto-insert": " concurrently \"npm run dev\" \"npm run auto-insert\""
+    "auto-insert": "ts-node src/dBTableAutoInsert.ts"
   },
   "keywords": [],
   "author": "vijayaraghavan16315@cse.ssn.edu.in",
