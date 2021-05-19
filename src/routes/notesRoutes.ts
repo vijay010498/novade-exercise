@@ -87,9 +87,13 @@ router.get("/api/notes", async (req: Request, res: Response) => {
       //author is false meaning no filter so selecting all the notes
       notes = await postgres.query("SELECT * FROM notes");
     }
-    res.status(200).send({
-      notes: notes.rows, //sending array of notes with status 200 - Note : If no notes found, then empty array will be sent
-    });
+    if (notes.rows.length) {
+      res.status(200).send({
+        notes: notes.rows, //sending array of notes with status 200 - Note : If no notes found, then empty array will be sent
+      });
+    } else {
+      res.status(404).send();
+    }
     return;
   } catch (err) {
     //any database error will get caught in this block and sent back
