@@ -21,7 +21,7 @@ app.use(notesRouter); //making use of the route imported in the top
 
 app.use(errorhandler); //making use of the errorhandler imported top
 
-//this is to cache all the endpoints except the defined ones and sends 404 error
+//this is to catch all the endpoints except the defined ones and sends 404 error
 app.all("*", (req, res) => {
   throw new NotFoundError();
 });
